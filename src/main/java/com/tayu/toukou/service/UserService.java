@@ -1,6 +1,6 @@
 package com.tayu.toukou.service;
 
-import java.math.BigInteger;
+
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class UserService {
         return userRepo.findAll();
     }
 
-    public User getUserDetails(BigInteger userId) {
+    public User getUserDetails(String userId) {
         return userRepo.findByUserId(userId);
     }
 }

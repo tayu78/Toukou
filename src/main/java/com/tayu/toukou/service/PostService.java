@@ -23,7 +23,7 @@ public class PostService {
         return postRepo.findAll();
     }
 
-    public Post getPostDetails(BigInteger postId) {
+    public Post getPostDetails(String postId) {
         return postRepo.findByPostId(postId);
     }
 }

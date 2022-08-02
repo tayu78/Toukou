@@ -1,8 +1,10 @@
 package com.tayu.toukou.entity;
 
-import java.math.BigInteger;
-import java.sql.Date;
+
+import java.time.LocalDateTime;
+
 import java.util.ArrayList;
+
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Temporal;
@@ -18,25 +20,22 @@ public class Post {
     
     @Id
     @GeneratedValue
-    private BigInteger postId;
+    private String postId;
 
-    private BigInteger userId;
+    private String userId;
     private String description;
     private String img;
-    private ArrayList<BigInteger> likes;
+    private ArrayList<String> likes;
 
     @Temporal(TemporalType.TIMESTAMP) 
     @DateTimeFormat(style = "M-") 
     @CreatedDate
-    private Date timestamp;
+    private LocalDateTime timestamp = LocalDateTime.now();
 
 
- 
     public Post(){}
 
-
-    public Post(BigInteger userId, String description, String img, ArrayList<BigInteger> likes,
-            Date timestamp) {
+    public Post(String userId, String description, String img, ArrayList<String> likes, LocalDateTime timestamp) {
         this.userId = userId;
         this.description = description;
         this.img = img;
@@ -44,58 +43,76 @@ public class Post {
         this.timestamp = timestamp;
     }
 
-    public BigInteger getPostId() {
+
+
+    public String getPostId() {
         return postId;
     }
 
-    public void setPostId(BigInteger postId) {
+
+
+    public void setPostId(String postId) {
         this.postId = postId;
     }
 
-    public BigInteger getUserId() {
+
+
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(BigInteger userId) {
+
+
+    public void setUserId(String userId) {
         this.userId = userId;
     }
+
+
 
     public String getDescription() {
         return description;
     }
 
+
+
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 
     public String getImg() {
         return img;
     }
 
+
+
     public void setImg(String img) {
         this.img = img;
     }
 
-    public ArrayList<BigInteger> getLikes() {
+
+
+    public ArrayList<String> getLikes() {
         return likes;
     }
 
-    public void setLikes(ArrayList<BigInteger> likes) {
+
+
+    public void setLikes(ArrayList<String> likes) {
         this.likes = likes;
     }
 
-    public Date getTimestamp() {
+
+
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+
+
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 
-
-
-
-
-    
-    
 }

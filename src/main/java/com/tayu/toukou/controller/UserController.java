@@ -1,9 +1,10 @@
 package com.tayu.toukou.controller;
 
-import java.math.BigInteger;
+
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import com.tayu.toukou.service.UserService;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired
@@ -32,7 +34,7 @@ public class UserController {
     }
 
     @GetMapping("/search/{userId}")
-    public User getUserById(@PathVariable BigInteger userId) {
+    public User getUserById(@PathVariable String userId) {
         return userService.getUserDetails(userId);
     }
 }

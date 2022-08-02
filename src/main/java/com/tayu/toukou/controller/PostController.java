@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import com.tayu.toukou.service.PostService;
 
 @RestController
 @RequestMapping("/posts")
+@CrossOrigin(origins = "*")
 public class PostController {
     
     @Autowired
@@ -26,14 +28,13 @@ public class PostController {
     public Post savaData(@RequestBody Post post) {
         return postService.saveDataToDB(post);
     }
-
     @GetMapping("/getAllPosts")
     public ArrayList<Post> getAllPosts() {
         return postService.findAllPost();
     }
 
     @GetMapping("/search/{postId}")
-    public Post getUserById(@PathVariable BigInteger postId) {
+    public Post getUserById(@PathVariable String postId) {
         return postService.getPostDetails(postId);
     }
     
