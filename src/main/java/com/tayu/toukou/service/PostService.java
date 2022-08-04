@@ -39,9 +39,13 @@ public class PostService {
         return postRepo.findByPostId(postId);
     }
 
+    public List<Post> getUsersPost(String userId){
+        return postRepo.findByUserId(userId);
+    }
+
     // public void sortDate(){
     //     Query query = new Query();
-    //     query.with(Sort.by(Sort.Direction.DESC,"created_at"));
+    //     query.with(Sort.by(Sort.Direction.DESC,"timestamp"));
     //    System.out.println(mongoTemplate.find(query,Post.class)); 
     // }
     public void deletePost(String postId) {

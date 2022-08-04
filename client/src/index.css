@@ -19,3 +19,8 @@ body{
     display: flex;
     grid-template-areas: ;
 }
+
+.current-user-avatar{
+    width: 150px !important;
+    height: 150px !important;
+}

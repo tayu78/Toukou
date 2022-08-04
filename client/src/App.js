@@ -4,6 +4,7 @@ import { UserContext } from './contexts/UserContext';
 import Topbar from "./components/Topbar";
 import Posts from "./routes/Posts";
 import Users from './routes/Users';
+import CurrentUser from './routes/CurrentUser';
 import SignForm from "./routes/SignForm";
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -22,6 +23,7 @@ function App() {
           <Route  element={<PrivateRoute user={user} />}>
               <Route path="/" element={<Posts />} />
               <Route path="/users" element={<Users />} />
+              <Route path="/currentUser" element={<CurrentUser />} />
           </Route>
           <Route path="/signUp" element={ <SignForm />} />
           <Route path="/signIn" element={ <SignForm isSignIn />} />

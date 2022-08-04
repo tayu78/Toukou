@@ -47,11 +47,6 @@ public class UserService {
     public void follow(String userId,User followingUser) {
         User user = userRepo.findByUserId(userId);
         ArrayList<String> following = user.getFollowing();
-        String a = followingUser.getUserId();
-        String b = followingUser.getName();
-        System.out.println("-----------" + a);
-        System.out.println("-----------" + b);
-        System.out.println("-----------" + followingUser);
         following.add(followingUser.getUserId());
         user.setFollowing(following);
         userRepo.save(user);

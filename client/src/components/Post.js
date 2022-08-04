@@ -4,6 +4,7 @@ import Avatar from '@mui/material/Avatar';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import axios from 'axios';
 import { useUserContext } from '../hooks/useUserContext';
+import { SERVER_DOMAIN } from '../cons/cons';
 
 
 
@@ -11,14 +12,18 @@ const Post = ({post,fetchPosts}) => {
   const [postedUser, setPostedUser] = useState("");
   const { user } = useUserContext();
 
+  useEffect(() => {
+    console.log("time: ", post.timestamp);
+  }, [])
+
 
     const fetchPostedUser = useCallback(async () => {
-        const res = await axios.get(`http://localhost:8080/users/search/${post.userId}`);
+        const res = await axios.get(`${SERVER_DOMAIN}/users/search/${post.userId}`);
         setPostedUser(res.data)
     }, [post.userId])
   
     const handleDelete = async () => {
-      await axios.delete(`http://localhost:8080/posts/${post.postId}`);
+      await axios.delete(`${SERVER_DOMAIN}/posts/${post.postId}`);
       await fetchPosts();
     }
   
@@ -36,7 +41,7 @@ const Post = ({post,fetchPosts}) => {
             {post.img && <img  className="mb-5" src={post.img} alt={"post-img-" + post.postId}></img>}
             <p className='text-xs text-slate-500 mb-5'>{new Date(post.timestamp).toDateString()}</p>
             <div className='flex justify-between'>  
-        <FavoriteBorderIcon className='text-slate-300 favorite-icon cursor-pointer' />
+        <FavoriteBorderIcon className='text-slate-300 favorite-icon cursor-pointer ' />
         { post.userId === user.userId && <DeleteOutlineIcon onClick={handleDelete} className="text-slate-300 favorite-icon cursor-pointer" />}
             </div>
       </div> 

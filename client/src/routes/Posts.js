@@ -2,11 +2,14 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Post from '../components/Post';
 import PostAddIcon from '@mui/icons-material/PostAdd';
+// import { Link } from 'react-router-dom';
 import Modal from '../components/Modal';
 import { useUserContext } from '../hooks/useUserContext';
 import { Avatar } from '@mui/material';
-import Users from './Users';
-import { Link } from 'react-router-dom';
+// import Users from './Users';
+import RecommendedUser from '../components/RecommendedUser';
+import { SERVER_DOMAIN } from '../cons/cons';
+
 
 
 const Posts = () => {
@@ -17,15 +20,16 @@ const Posts = () => {
     
 
     const fetchPosts= async() => {
-        const res = await axios.get("http://localhost:8080/posts/getAllPosts");
-        setPosts(res.data)
+        const res = await axios.get(`${SERVER_DOMAIN}/posts/getAllPosts`);
+        res.data.sort((x, y) => new Date(y.timestamp) - new Date(x.timestamp));
+        setPosts(res.data);
         // setIsLoading(false);
     }
  
 
     const handlePost = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/posts/save", { userId: user.userId, description: postContent })
+        await axios.post(`${SERVER_DOMAIN}/posts/save`, { userId: user.userId, description: postContent })
         await fetchPosts();
         setIsModalOpen(false);
         setPostContent("");
@@ -51,10 +55,8 @@ const Posts = () => {
               )
           })}    
                 </div>
-            <div className='flex-3 mx-5 w-4/5  bg-white  rounded mb-5 p-5 border h-48'>
-                <h1>Reccomended Users</h1>
-                    <Users isReccomend />
-                <Link className='mt-5' to="/users">Show more Users</Link>
+            <div className='flex-3 mx-5 w-4/5 '>
+                    <RecommendedUser />
             </div>
           <PostAddIcon onClick={()=>setIsModalOpen(true)} className='fixed right-10 bottom-10 cursor-pointer new-post-icon' />
             </div>  
@@ -63,8 +65,8 @@ const Posts = () => {
                     <form onSubmit={handlePost}>
                     <div className='p-16'>
                         <div className='flex items-center mb-5'>
-                            <Avatar className='mr-5'  src={user.profilePicture} />
-                            <span>{user.name}</span>
+                            <Avatar className='mr-5'  src={user?.profilePicture} />
+                            <span>{user?.name}</span>
                         </div>
                         <textarea placeholder='share your feelings' value={postContent} onChange={e=>setPostContent(e.target.value)} className='border rouned w-full h-40 focus:outline-0' />
                         </div>

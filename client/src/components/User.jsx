@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import { Avatar } from '@mui/material';
 import axios from 'axios';
 import { useUserContext } from '../hooks/useUserContext';
+import { SERVER_DOMAIN } from '../cons/cons';
 
 const User = ({user}) => {
     const [isFollow, setIsFollow] = useState(false)
@@ -9,9 +10,7 @@ const User = ({user}) => {
 
     const handleClick =async () => {
         setIsFollow(prev => !prev)
-        console.log("user!!!!!!!!!",user)
-        await axios.put(`http://localhost:8080/users/${signInUser.userId}/follow`,user);
-        
+        await axios.put(`${SERVER_DOMAIN}/users/${signInUser.userId}/follow`,user);
     }
 
 

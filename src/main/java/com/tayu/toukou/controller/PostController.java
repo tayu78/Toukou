@@ -44,6 +44,11 @@ public class PostController {
         return postService.getPostDetails(postId);
     }
     
+    @GetMapping("/getUsersPosts/{userId}")
+    public List<Post> getUsersPost(@PathVariable String userId) {
+        return postService.getUsersPost(userId);
+    }
+
     // @GetMapping("/sort")
     // public void sortdate() {
     //     postService.sortDate();
