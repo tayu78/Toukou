@@ -5,6 +5,8 @@ import PostAddIcon from '@mui/icons-material/PostAdd';
 import Modal from '../components/Modal';
 import { useUserContext } from '../hooks/useUserContext';
 import { Avatar } from '@mui/material';
+import Users from './Users';
+import { Link } from 'react-router-dom';
 
 
 const Posts = () => {
@@ -28,6 +30,9 @@ const Posts = () => {
         setIsModalOpen(false);
         setPostContent("");
     }
+
+
+    
     useEffect(() => {
         fetchPosts();
     }, [])
@@ -36,14 +41,21 @@ const Posts = () => {
     
     return (
       <>
-         <div > 
-          {posts.map((post) => {
+        <div className='pl-80 flex ' > 
+         <div className='flex-5'>
+         {posts.map((post) => {
               return (
                   <>
-                      <Post post={post} />
+                      <Post fetchPosts={fetchPosts} post={post} />
                   </>
               )
-          })}
+          })}    
+                </div>
+            <div className='flex-3 mx-5 w-4/5  bg-white  rounded mb-5 p-5 border h-48'>
+                <h1>Reccomended Users</h1>
+                    <Users isReccomend />
+                <Link className='mt-5' to="/users">Show more Users</Link>
+            </div>
           <PostAddIcon onClick={()=>setIsModalOpen(true)} className='fixed right-10 bottom-10 cursor-pointer new-post-icon' />
             </div>  
             {isModalOpen &&

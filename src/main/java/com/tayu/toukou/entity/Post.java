@@ -28,7 +28,7 @@ public class Post {
     private ArrayList<String> likes;
 
     @Temporal(TemporalType.TIMESTAMP) 
-    @DateTimeFormat(style = "M-") 
+    // @DateTimeFormat(style = "M-") 
     @CreatedDate
     private LocalDateTime timestamp = LocalDateTime.now();
 

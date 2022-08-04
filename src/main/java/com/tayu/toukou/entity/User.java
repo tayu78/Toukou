@@ -26,8 +26,8 @@ public class User {
     private String email;
     private String password;
     private String profilePicture;
-    private ArrayList<String> follower;
-    private ArrayList<String> following;
+    private ArrayList<String> follower = new ArrayList<>();
+    private ArrayList<String> following = new ArrayList<>();
     private String description;
 
 
@@ -44,6 +44,14 @@ public class User {
         this.follower = follower;
         this.following = following;
         this.description = description;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User [description=" + description + ", email=" + email + ", follower=" + follower + ", following="
+                + following + ", name=" + name + ", password=" + password + ", profilePicture=" + profilePicture
+                + ", userId=" + userId + "]";
     }
 
 

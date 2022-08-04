@@ -14,4 +14,8 @@ public interface UserRepo extends MongoRepository<User,String> {
     ArrayList<User> findAll();
 
     User findByUserId(String userId);
+
+    User findByNameAndEmailAndPassword(String name, String email,String password);
+    
+    
 }
