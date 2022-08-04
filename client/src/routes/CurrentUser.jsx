@@ -6,6 +6,7 @@ import Post from "../components/Post";
 import Users from "../routes/Users"
 import { useUserContext } from '../hooks/useUserContext';
 import RecommendedUser from '../components/RecommendedUser';
+import { SERVER_DOMAIN } from '../cons/cons';
 
 
 
@@ -14,7 +15,7 @@ const CurrentUser = () => {
     const { user } = useUserContext();
 
     const fetchUserPosts = useCallback(async () => {
-        const res = await axios.get(`http://localhost:8080/posts/getUsersPosts/${user.userId}`);
+        const res = await axios.get(`${SERVER_DOMAIN}/posts/getUsersPosts/${user.userId}`);
         if (res.data) {
             res.data.sort((x, y) => new Date(y.timestamp) - new Date(x.timestamp));
             setUserPosts(res.data);

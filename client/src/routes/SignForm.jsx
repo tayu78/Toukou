@@ -3,6 +3,8 @@ import { useNavigate,Link } from 'react-router-dom';
 import axios from 'axios';
 import FormInput from '../components/FormInput';
 import { useUserContext } from "../hooks/useUserContext";
+import { SERVER_DOMAIN } from '../cons/cons';
+
 const SignForm = ({isSignIn}) => {
     const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
@@ -16,8 +18,8 @@ const SignForm = ({isSignIn}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         let res;
-        if(isSignIn) res = await axios.post("http://localhost:8080/users/signIn", { name: username,email,password });
-        else res = await axios.post("http://localhost:8080/users/save", { name: username, email, password });
+        if(isSignIn) res = await axios.post(`${SERVER_DOMAIN}/users/signIn`, { name: username,email,password });
+        else res = await axios.post(`${SERVER_DOMAIN}/users/save`, { name: username, email, password });
 
         if (res.data) setUser(res.data)
         else setIsError(true);
