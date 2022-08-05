@@ -46,10 +46,10 @@ const SignForm = ({isSignIn}) => {
             {isError && <p className='bg-red-400  p-2 rounded w-3/5 mx-auto mb-3 text-white text-center'>User not found. please try again.</p>}  
               <form className="text-center" onSubmit={handleSubmit}>
                 <FormInput  label="name" value={username} setData={setUserName} /> 
-                <FormInput  label="email" value={email} setData={setEmail} /> 
-                  <FormInput label="password" value={password} setData={setPassword} /> 
+                <FormInput type='email' label="email" value={email} setData={setEmail} /> 
+                  <FormInput  type='password' label="password" value={password} setData={setPassword} /> 
                   <div className='text-center mt-10'>
-                  <button type="submit" className='bg-black text-white box-border border rounded-full w-56 py-2'>{ isSignIn ? "Sign In" : "Sign Up"}</button>
+                  <button type="submit" className='bg-red-600 text-white box-border border rounded-full w-56 py-2'>{ isSignIn ? "Sign In" : "Sign Up"}</button>
                   </div>
               </form>
               <div className='text-center mt-3'>

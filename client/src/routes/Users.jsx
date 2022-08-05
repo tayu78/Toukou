@@ -11,7 +11,7 @@ const Users = ({isShort}) => {
 
     const fetchUsers= useCallback(async() => {
         const res = await axios.get(`${SERVER_DOMAIN}/users/getReccomendedUsers/${user.userId}`);
-        setUsers(res.data)
+        setUsers(res.data);
         // setIsLoading(false);
     },[user.userId])
 
@@ -21,7 +21,7 @@ const Users = ({isShort}) => {
 
 
     return (
-        <div className='w-2/5 mx-auto'>  
+        <div className={isShort ? 'mx-auto' : 'w-2/5 mx-auto'}>  
          {isShort ? users.slice(0, 1).map(user => {
              return <User user={user} />
          }) : 
@@ -29,7 +29,6 @@ const Users = ({isShort}) => {
            return   <User user={user} />
         })  
         }    
-           
       </div>
   )
 }

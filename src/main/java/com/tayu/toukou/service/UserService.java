@@ -66,11 +66,15 @@ public class UserService {
     }
 
     public User follow(String userId, User followingUser) {
-        User user = userRepo.findByUserId(userId);
-        ArrayList<String> following = user.getFollowing();
+        User signInuser = userRepo.findByUserId(userId);
+        ArrayList<String> following = signInuser.getFollowing();
         following.add(followingUser.getUserId());
-        user.setFollowing(following);
-        userRepo.save(user);
-        return user;
+        signInuser.setFollowing(following);
+        userRepo.save(signInuser);
+        
+        // add sign in user's Id to following user's  follower as well
+        followingUser.getFollower().add(userId);
+        userRepo.save(followingUser);
+        return signInuser;
     }
 }
