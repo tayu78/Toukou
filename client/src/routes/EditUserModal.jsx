@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useCallback, useEffect} from 'react';
 import axios from 'axios';
 
 import Modal from '../components/Modal';
@@ -6,7 +6,7 @@ import FormInput from '../components/FormInput';
 import { useUserContext } from '../hooks/useUserContext';
 import { SERVER_DOMAIN } from '../cons/cons';
 
-const EditUserModal = ({ setIsEditProfile }) => {
+const EditUserModal = ({ setIsEditProfile,fetchUserPosts }) => {
     const { user,setUser } = useUserContext();
     const [username, setUsername] = useState(user.name);
     const [email, setEmail] = useState(user.email);
@@ -15,10 +15,13 @@ const EditUserModal = ({ setIsEditProfile }) => {
 
     const handleSave = async (e) => {
         e.preventDefault();
-        const { data: updatedUser } = await axios.put(`${SERVER_DOMAIN}/users/updateUserProfile/${user.userId}`, { name: username, email, profilePicture, description })
-        setUser(updatedUser)
+        const { data: updatedUser } = await axios.put(`${SERVER_DOMAIN}/users/updateUserProfile/${user.userId}`, { name: username, email, profilePicture, description });
+        setUser(updatedUser);
+        await fetchUserPosts();
         setIsEditProfile(false);
     }
+    
+
     return (
         <>
         <Modal  modalSize='w-2/5 h-3/5' setIsOpen={setIsEditProfile}>

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tayu.toukou.entity.Post;
+import com.tayu.toukou.entity.User;
 import com.tayu.toukou.repo.PostRepo;
 import com.tayu.toukou.service.PostService;
 
@@ -47,6 +48,13 @@ public class PostController {
     @GetMapping("/getUsersPosts/{userId}")
     public List<Post> getUsersPost(@PathVariable String userId) {
         return postService.getUsersPost(userId);
+    }
+
+    @PostMapping("/getFollowingUsersPosts")
+    public List<Post> getFollowingUsersPosts(@RequestBody User user) {
+        String userId = user.getUserId();
+        ArrayList<String> following = user.getFollowing();
+        return postService.getFolloingUsersPosts(userId,following);
     }
 
     // @GetMapping("/sort")

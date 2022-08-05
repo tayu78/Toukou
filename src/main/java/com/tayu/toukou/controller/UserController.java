@@ -35,10 +35,16 @@ public class UserController {
         return userService.findAllUser();
     }
 
+    @GetMapping("/getReccomendedUsers/{userId}")
+    public ArrayList<User> getReccomendedUsers(@PathVariable String userId) {
+        return userService.getReccomendedUsers(userId);
+    }
+
     @GetMapping("/search/{userId}")
     public User getUserById(@PathVariable String userId) {
         return userService.getUserDetails(userId);
     }
+
 
     @PostMapping("/signIn")
     public User signIn(@RequestBody User user) {

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { Avatar } from '@mui/material';
 import axios from 'axios';
 import { useUserContext } from '../hooks/useUserContext';
@@ -15,11 +15,10 @@ const User = ({user}) => {
     }
 
 
-
   return (
     <div className='flex justify-between mt-5 bg-white  rounded mb-5 p-5 border '>
     <div className='flex items-center '>
-        <Avatar />
+        <Avatar src={user.profilePicture} />
               <p className='ml-5'>{user?.name}</p>
         </div>
           {isFollow ?  

@@ -23,8 +23,11 @@ const CurrentUser = () => {
             res.data.sort((x, y) => new Date(y.timestamp) - new Date(x.timestamp));
             setUserPosts(res.data);
         }
-    },[user.userId])
+    }, [user.userId]);
 
+   
+
+    
     useEffect(() => {
         fetchUserPosts();
     }, [fetchUserPosts])
@@ -67,7 +70,7 @@ const CurrentUser = () => {
           </div>
               
           {
-              isEditProfile && <EditUserModal setIsEditProfile={setIsEditProfile} />
+              isEditProfile && <EditUserModal fetchUserPosts={fetchUserPosts} setIsEditProfile={setIsEditProfile} />
           }
               
       </div>

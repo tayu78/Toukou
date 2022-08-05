@@ -24,7 +24,7 @@ const Post = ({post,fetchPosts}) => {
   
     useEffect(() => {
         fetchPostedUser()
-    },[fetchPostedUser])
+    },[fetchPostedUser,user])
 
   return (
         <div key={post.postId} className='w-full  bg-white mx-auto rounded mb-5 p-5 border '>  

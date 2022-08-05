@@ -19,8 +19,8 @@ public class UserService {
     @Autowired
     UserRepo userRepo;
 
-    @Autowired
-    MongoTemplate mongoTemplate;
+    // @Autowired
+    // MongoTemplate mongoTemplate;
 
     public User saveDataToDB(User user) {
         return userRepo.save(user);
@@ -34,6 +34,17 @@ public class UserService {
         return userRepo.findByUserId(userId);
     }
 
+   
+
+    public ArrayList<User> getReccomendedUsers(String userId) {
+        User user = userRepo.findByUserId(userId);
+
+        ArrayList<User> users = userRepo.findAll();
+        users.removeIf(u -> u.getUserId().equals(userId) || user.getFollowing().contains(u.getUserId()) );
+        return users;
+
+    }
+
     public User getUserDetails(String name, String email, String password) {
         return userRepo.findByNameAndEmailAndPassword(name, email, password);
     }
@@ -44,7 +55,7 @@ public class UserService {
     //      return  mongoTemplate.find(query, User.class);
     // }
 
-    public User updateUserProfile(String userId ,User updatedUserDetail) {
+    public User updateUserProfile(String userId, User updatedUserDetail) {
         User user = userRepo.findByUserId(userId);
         user.setName(updatedUserDetail.getName());
         user.setEmail(updatedUserDetail.getEmail());
