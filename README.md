@@ -17,8 +17,8 @@ It is kind of Twitter clone
   | email    | String       |
   | password   | String        |
   | profilePicture     | String       |
-  | follower   | ArrayList<String>        |
-  | following    | ArrayList<String>       |
+  | follower   | ArrayList\<String>        |
+  | following    | ArrayList\<String>       |
   | description   | String        |
   
   
@@ -29,7 +29,7 @@ It is kind of Twitter clone
   | userId   | String        |
   | description   | String       |
   | img   | String        |
-  | likes    | ArrayList<String>      |
+  | likes    | ArrayList\<String>      |
   
 
 ## hosting
@@ -45,5 +45,5 @@ It is kind of Twitter clone
 - adding like,comment for posts
 - upload image through server(Java) (not input image url)
 - Get the first dozen posts in timeline (not all  posts of followers in DB ) because it's gonna be heavy.\
-- error handling
+- error handling\
 ... and more!
