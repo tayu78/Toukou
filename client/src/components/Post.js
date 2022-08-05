@@ -12,11 +12,6 @@ const Post = ({post,fetchPosts}) => {
   const [postedUser, setPostedUser] = useState("");
   const { user } = useUserContext();
 
-  useEffect(() => {
-    console.log("time: ", post.timestamp);
-  }, [])
-
-
     const fetchPostedUser = useCallback(async () => {
         const res = await axios.get(`${SERVER_DOMAIN}/users/search/${post.userId}`);
         setPostedUser(res.data)

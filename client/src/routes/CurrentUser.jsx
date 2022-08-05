@@ -1,36 +1,34 @@
 import React, { useEffect, useState,useCallback } from 'react';
 import axios from "axios";
-import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
+import EditIcon from '@mui/icons-material/Edit';
 import Post from "../components/Post";
-import Users from "../routes/Users"
 import { useUserContext } from '../hooks/useUserContext';
 import RecommendedUser from '../components/RecommendedUser';
 import { SERVER_DOMAIN } from '../cons/cons';
-
+import EditUserModal from './EditUserModal';
 
 
 const CurrentUser = () => {
     const [userPosts, setUserPosts] = useState([]);
+    const [isEditProfile, setIsEditProfile] = useState(false);
     const { user } = useUserContext();
 
+    const handleEditProfile = () => {
+        setIsEditProfile(true);
+    }
     const fetchUserPosts = useCallback(async () => {
         const res = await axios.get(`${SERVER_DOMAIN}/posts/getUsersPosts/${user.userId}`);
         if (res.data) {
             res.data.sort((x, y) => new Date(y.timestamp) - new Date(x.timestamp));
             setUserPosts(res.data);
         }
-            
-        console.log("userposts: ", res);
     },[user.userId])
 
     useEffect(() => {
         fetchUserPosts();
     }, [fetchUserPosts])
     
-    useEffect(() => {
-        console.log("user imformation: ", user)
-    },[])
 
   return (
       <div className='pl-80 flex' >
@@ -41,7 +39,8 @@ const CurrentUser = () => {
               </div>
               <div className='flex-5 pt-6 pl-6'>
                   <div className='h-10 flex items-center mb-5'>  
-                     <p className='text-3xl'>Robert Firmino</p>
+                          <p className='text-3xl mr-4'>{user.name}</p>
+                          <EditIcon onClick={handleEditProfile} className="cursor-pointer" />
                   </div>
                   <div className='flex gap-5 mb-5'>
                       <p>{userPosts.length} posts</p>
@@ -64,11 +63,13 @@ const CurrentUser = () => {
               </div>
           </div>
             <div className='flex-3 mx-5 w-4/5'>
-                {/* <h1>Reccomended Users</h1>
-                    <Users isReccomend />
-                <Link className='mt-5' to="/users">Show more Users</Link> */}
               <RecommendedUser />
-            </div>
+          </div>
+              
+          {
+              isEditProfile && <EditUserModal setIsEditProfile={setIsEditProfile} />
+          }
+              
       </div>
   )
 }

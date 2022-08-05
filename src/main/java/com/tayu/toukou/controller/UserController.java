@@ -45,9 +45,15 @@ public class UserController {
         return userService.getUserDetails(user.getName(), user.getEmail(), user.getPassword());
     }
 
+    @PutMapping("/updateUserProfile/{userId}")
+    public User updateUserProfile(@PathVariable String userId, @RequestBody User updatedUserDetail) {
+        System.out.println("user" + updatedUserDetail);
+        return userService.updateUserProfile(userId,updatedUserDetail);
+    }
+
     @PutMapping("/{userId}/follow")
-    public void follow(@PathVariable String userId ,@RequestBody User followingUser) {
-        userService.follow(userId, followingUser);
+    public User follow(@PathVariable String userId, @RequestBody User followingUser) {
+        return userService.follow(userId, followingUser);
     }
     
     // @GetMapping("/query")

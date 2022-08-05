@@ -6,11 +6,12 @@ import { SERVER_DOMAIN } from '../cons/cons';
 
 const User = ({user}) => {
     const [isFollow, setIsFollow] = useState(false)
-    const { user: signInUser } = useUserContext();
+    const { user: signInUser,setUser: setSignInUser } = useUserContext();
 
     const handleClick =async () => {
-        setIsFollow(prev => !prev)
-        await axios.put(`${SERVER_DOMAIN}/users/${signInUser.userId}/follow`,user);
+      setIsFollow(prev => !prev)
+     const {data:followingUpdatedUser} =  await axios.put(`${SERVER_DOMAIN}/users/${signInUser.userId}/follow`, user);
+      setSignInUser(followingUpdatedUser);
     }
 
 

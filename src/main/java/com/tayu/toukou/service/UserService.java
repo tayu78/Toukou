@@ -44,11 +44,22 @@ public class UserService {
     //      return  mongoTemplate.find(query, User.class);
     // }
 
-    public void follow(String userId,User followingUser) {
+    public User updateUserProfile(String userId ,User updatedUserDetail) {
+        User user = userRepo.findByUserId(userId);
+        user.setName(updatedUserDetail.getName());
+        user.setEmail(updatedUserDetail.getEmail());
+        user.setProfilePicture(updatedUserDetail.getProfilePicture());
+        user.setDescription(updatedUserDetail.getDescription());
+        userRepo.save(user);
+        return user;
+    }
+
+    public User follow(String userId, User followingUser) {
         User user = userRepo.findByUserId(userId);
         ArrayList<String> following = user.getFollowing();
         following.add(followingUser.getUserId());
         user.setFollowing(following);
         userRepo.save(user);
+        return user;
     }
 }

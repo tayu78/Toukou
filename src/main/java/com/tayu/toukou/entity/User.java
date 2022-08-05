@@ -19,7 +19,7 @@ public class User {
     @GeneratedValue
     private String userId;
     
-   @NonNull
+//    @NonNull
     private String name;
 
     @Indexed(unique = true)
