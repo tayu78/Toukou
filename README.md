@@ -1,49 +1,29 @@
 # Toukou
 ## Meaning of Toukou
-It is the Japanese word which means "post" in English
+It is the Japanese word which means "posting" in English
 ## What is that
-It is kind of Twitter clone 
+It is kind of Posting app
+<img width="1440" alt="スクリーンショット 2022-08-08 16 18 54" src="https://user-images.githubusercontent.com/73221904/183531317-8419325f-2815-41e4-9b2c-706f30dfcb26.png">
+
+## Why I create this app
+I had to create app with Java Spring for final project of Java in my school within 2 weeks. 
+I thought it is good opportunity to practice making app which has functionallity of posting because I am planning to create some app which have that functionallity!
 
 
-## DB
- mongodb
-### document
-- [user](https://github.com/tayu78/Toukou/blob/main/src/main/java/com/tayu/toukou/entity/User.java)
 
-  | field      | type |
-  | ----------- | ----------- |
-  | userId     | String       |
-  | name   | String        |
-  | email    | String       |
-  | password   | String        |
-  | profilePicture     | String       |
-  | follower   | ArrayList\<String>        |
-  | following    | ArrayList\<String>       |
-  | description   | String        |
-  
-  
-- [post](https://github.com/tayu78/Toukou/blob/main/src/main/java/com/tayu/toukou/entity/Post.java)
-  | field      | type |
-  | ----------- | ----------- |
-  | postId     | String       |
-  | userId   | String        |
-  | description   | String       |
-  | img   | String        |
-  | likes    | ArrayList\<String>      |
-  
-
-## hosting
-- [client (React): firebase](https://tayu-toukou.web.app)
-- [server (java): Heroku](https://floating-ravine-24176.herokuapp.com/)
+## How to access this app
+-  go to [client (React): firebase](https://tayu-toukou.web.app) and
+please free to Sign up (It takes few minutes starting [server (java): Heroku](https://floating-ravine-24176.herokuapp.com/) 
+,so please wait first after clicking sign up button)
 
 ## the point I felt it was difficult
 - not enough time
-- using mongodb
+- connecting mongodb with Java 
 
 ## future improvements
 - creating page of user who is not signIn
-- adding like,comment for posts
-- upload image through server(Java) (not input image url)
-- Get the first dozen posts in timeline (not all  posts of followers in DB ) because it's gonna be heavy.\
-- error handling\
+- adding favorite,comment for posttings
+- upload image through server(Java) to Cloud Storage such as Google Cloud Storage  
+- Get the first dozen posts in timeline (not all  posts of followers in DB ) because it's gonna be heavy.
+
 ... and more!
